@@ -215,7 +215,13 @@ export default function SchedulePage() {
             <DialogTitle>{editingTask ? "Edit Task" : "New Task"}</DialogTitle>
           </DialogHeader>
           <TaskForm
-            initialValues={editingTask || undefined}
+            initialValues={editingTask ? {
+              title: editingTask.title,
+              description: editingTask.description || undefined,
+              dueDate: editingTask.dueDate || undefined,
+              priority: editingTask.priority as "low" | "medium" | "high",
+              completed: editingTask.completed,
+            } : undefined}
             onSubmit={handleTaskFormSubmit}
             onCancel={() => {
               setIsTaskFormOpen(false);

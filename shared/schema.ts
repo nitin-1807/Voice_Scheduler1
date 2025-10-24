@@ -24,9 +24,7 @@ export const insertTaskSchema = createInsertSchema(tasks).omit({
   completed: z.boolean().default(false),
 });
 
-export const updateTaskSchema = insertTaskSchema.partial().omit({
-  createdAt: true,
-});
+export const updateTaskSchema = insertTaskSchema.partial();
 
 export type InsertTask = z.infer<typeof insertTaskSchema>;
 export type UpdateTask = z.infer<typeof updateTaskSchema>;
